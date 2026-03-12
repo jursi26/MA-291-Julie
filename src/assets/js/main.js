@@ -28,10 +28,10 @@ function displaySnacks(snacks) {
     <article class="card">
       <img src="${snack.imageUrl}" alt="${snack.alt}">
       <div class="card-content">
-        <h3>${snack.name}</h3>
+        <h3>${snack.name.toUpperCase()}</h3>
         <p>${snack.description}</p>
-        <p class="price">$ ${snack.price.toFixed(2)}</p>
-        <span class="fake-action">Add to cart</span>
+        <p class="price">CHF ${snack.price.toFixed(2)}</p>
+        <span class="fake-action">Commander</span>
       </div>
     </article>
   `).join('');

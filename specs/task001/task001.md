@@ -2,7 +2,7 @@
 
 ## Objectif
 
-Ajouter deux snacks à la liste existante dans `data/snacks.json`.
+Ajouter deux snacks à la liste existante dans `data/snacks.json`. - DONE
 
 ### Contraintes
 
