@@ -5,11 +5,15 @@ const loadSnacksBtn = document.querySelector('#load-snacks-btn');
 const snacksContainer = document.querySelector('#snacks-container');
 const feedback = document.querySelector('#feedback');
 
-// TODO task004: ajouter les références DOM nécessaires pour les points de vente
-// TODO task004: prévoir une variable d'état pour éviter de recharger inutilement les données
+const toggleSalesPointsBtn = document.querySelector('#toggle-sales-points-btn');
+const salesPointsSection = document.querySelector('#sales-points-section');
+const salesPointsContainer = document.querySelector('#sales-points-container');
+const feedbackSales = document.querySelector('#feedback-sales');
+
+let isSalesPointsLoaded = false;
 
 loadSnacksBtn.addEventListener('click', loadSnacks);
-// TODO task004: brancher ici l'événement du bouton des points de vente
+toggleSalesPointsBtn.addEventListener('click', toggleSalesPoints);
 
 async function loadSnacks() {
   feedback.textContent = '';
@@ -36,9 +40,42 @@ function displaySnacks(snacks) {
     </article>
   `).join('');
 
-  // TODO task002: adapter le rendu selon le cahier des charges
 }
 
-// TODO task003: créer une fonction loadSalesPoints
-// TODO task003: créer une fonction displaySalesPoints
-// TODO task005: afficher un message lisible si le chargement échoue
+async function toggleSalesPoints() {
+  if (salesPointsSection.classList.contains('hidden')) {
+    salesPointsSection.classList.remove('hidden');
+    toggleSalesPointsBtn.textContent = 'Masquer les points de vente';
+
+    if (!isSalesPointsLoaded) {
+      await loadSalesPoints();
+    }
+  } else {
+    salesPointsSection.classList.add('hidden');
+    toggleSalesPointsBtn.textContent = 'Afficher les points de vente';
+  }
+}
+
+async function loadSalesPoints() {
+  feedbackSales.textContent = '';
+
+  try {
+    const points = await fetchSalesPoints();
+    displaySalesPoints(points);
+    isSalesPointsLoaded = true;
+  } catch (error) {
+    console.error(error);
+    feedbackSales.textContent = 'Impossible de charger les points de vente.';
+  }
+}
+
+function displaySalesPoints(points) {
+  salesPointsContainer.innerHTML = points.map((point) => `
+    <article class="sales-point-card">
+      <h3>${point.building}</h3>
+      <p><strong>Salle :</strong> ${point.room}</p>
+      <p><strong>Horaires :</strong> ${point.openingHours}</p>
+      <p><strong>Email :</strong> <a href="mailto:${point.email}">${point.email}</a></p>
+    </article>
+  `).join('');
+}
