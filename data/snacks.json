@@ -33,5 +33,19 @@
     "description": "A delicious steak served with side dishes.",
     "price": 12.0,
     "imageUrl": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "name": "Fruit Salad",
+    "alt": "Fruit Salad",
+    "description": "Seasonal fresh fruits cut daily.",
+    "price": 4.0,
+    "imageUrl": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "name": "Cookie",
+    "alt": "Cookie",
+    "description": "Double chocolate chip cookie.",
+    "price": 3.5,
+    "imageUrl": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=80"
   }
 ]
